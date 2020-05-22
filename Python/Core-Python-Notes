@@ -1,0 +1,677 @@
+Introduction
+
+  - In order to run any program in a computer, there should be a translator exists
+  - Technically a translator is called as an "Interpreter" or "Compiler"
+
+  Interpreter
+
+    - Python usually uses Interpreter
+    - Interpreter translates line by line and executes the line before going to the next line
+    - Interpreter executes line by line from the source code (.py files) and translates into machine code
+
+  Compiler
+
+    - Complier translate all the lines into a binary file and execute that file at once
+    - Compiler usually executes all the code (entire file) at once and translate into machine code
+
+How a python file gets executed in the machines?
+
+  - We write python code (in .py files)
+  - It gets interpreted line by line and formed into byte code
+  - The byte code gets run in the cpython vm which runs on the machines (computer or mobile)
+
+    .py file >> Interpreter >> CPython VM >> Machines (Laptop or Computer or Mobile)
+
+Python can be run in the following:
+
+  - Terminal (Command Prompt)
+  - Code editors (Ex: Sublime Text, Visual Studio)
+  - IDE (Integrated Development Environments like Pycharm, Spyder)
+  - Notebooks (Jupiter)
+
+Python 2 VS Python 3
+====================
+
+  - The key Difference between Python 2.x and 3.x are as follows:
+
+      1. Division Operator
+
+        - It is preferred to use the floating value (like 7.0/5 or 7/5.0) to get the expected result when porting our code.
+        - Example:
+          - 2.x
+            print 7/5 --> 1
+            print -7/5 --> -2
+          - 3.x
+            print 7/5 --> 1.4
+            print -7/5 --> -1.4
+
+      2. print function
+
+        - The print keyword in Python 2.x is replaced by the print() function in Python 3.x
+        - Example:
+          - print "Hello..!" --> Doesn't support in 3.x
+          - print("Hello..!") --> Support in 3.x
+
+      3. unicode
+
+        - In Python 2, implicit str type is ASCII. Type Bytes is same as str
+        - But in Python 3.x implicit str type is Unicode
+        - Example:
+          - 2.x
+            print(type('default string ')) --> <type 'str'>
+            print(type(b'string with b ')) --> <type 'str'>
+          - 3.x
+            print(type('default string ')) --> <class 'str'>
+            print(type(b'string with b ')) --> <class 'bytes'>
+
+        - Python 2.x also supports Unicode
+        - Example:
+          - 2.x
+            print(type('default string ')) --> <type 'str'>
+            print(type(u'string with b ')) --> <type 'unicode'>  (Unicode and str are different)
+          - 3.x
+            print(type('default string ')) --> <class 'str'>
+            print(type(b'string with b ')) --> <class 'str'> (Unicode and str are same)
+
+      4. xrange function
+
+        - xrange() of Python 2.x doesn’t exist in Python 3.x
+        - In Python 3.x, the range function now does what xrange does in Python 2.x
+        - So Python 3.x’s range function is xrange from Python 2.x.
+        - Exaple:
+
+          for x in xrange(1,5):
+            print x
+
+          - 2.x
+            1 2 3 4 1 2 3 4
+
+          - 3.x
+            NameError: name 'xrange' is not defined
+
+        5. Error Handling
+
+          - There is a small change in error handling in both versions.
+          - In python 3.x, ‘as’ keyword is required.
+          - Example:
+          - 2.x
+
+            try:
+              trying_to_check_error
+            except NameError, err:
+              print err, "Error Caused" # Would not work in Python 3.x
+
+          - 3.x
+
+            try:
+              trying_to_check_error
+            except NameError as err:  # 'as' is needed in Python 3.x
+              print err, "Error Caused"
+
+        6. __future__ module
+
+          - This is basically not a difference between the two versions
+          - The idea of __future__ module is to help migrate to Python 3.x
+          - If we are planning to have Python 3.x support in our 2.x code, we can use _future_ imports in our code.
+          - Example:
+
+            - For example, in the Python 2.x code below, we use Python 3.x’s integer division behavior using the __future__ module.
+
+              from __future__ import division
+
+              print 7/5 --> 1.4
+              print -7/5 --> -1.4
+
+              - The above python 2.x code, division works same as 3.x because we use  __future__
+
+            - Another example where we use brackets in Python 2.x using __future__ module:
+
+              from __future__ import print_function
+
+              print('Hello..!')
+
+              o/p: Hello..!
+
+======================================================================================================================================================
+Python Keywords:
+
+  - Python has a set of keywords that are reserved words that cannot be used as variable names, function names, or any other identifiers:
+
+      Keyword 	Description
+      and	      A logical operator
+      as	      To create an alias
+      assert    For debugging
+      break	    To break out of a loop
+      class   	To define a class
+      continue	To continue to the next iteration of a loop
+      def     	To define a function
+      del     	To delete an object
+      elif    	Used in conditional statements, same as else if
+      else    	Used in conditional statements
+      except  	Used with exceptions, what to do when an exception occurs
+      False   	Boolean value, result of comparison operations
+      finally 	Used with exceptions, a block of code that will be executed no matter if there is an exception or not
+      for     	To create a for loop
+      from    	To import specific parts of a module
+      global  	To declare a global variable
+      if      	To make a conditional statement
+      import  	To import a module
+      in      	To check if a value is present in a list, tuple, etc.
+      is      	To test if two variables are equal
+      lambda  	To create an anonymous function
+      None    	Represents a null value
+      nonlocal	To declare a non-local variable
+      not     	A logical operator
+      or      	A logical operator
+      pass    	A null statement, a statement that will do nothing
+      raise   	To raise an exception
+      return  	To exit a function and return a value
+      True    	Boolean value, result of comparison operations
+      try	      To make a try...except statement
+      while   	To create a while loop
+      with    	Used to simplify exception handling
+      yield   	To end a function, returns a generator
+
+Variables
+
+  - Variables are nothing but reserved memory locations to store values.
+  - This means that when you create a variable you reserve some space in memory.
+  - Based on the data type of a variable, the interpreter allocates memory and decides what can be stored in the reserved memory.
+  - Assigning Values to Variables
+    - Python variables do not need explicit declaration to reserve memory space.
+    - The declaration happens automatically when you assign a value to a variable.
+    - The equal sign (=) is used to assign values to variables.
+    - The operand to the left of the = operator is the name of the variable and the operand to the right of the = operator is the value stored in the variable.
+    - Example:
+        counter = 100          # An integer assignment
+        miles   = 1000.0       # A floating point
+        name    = "John"       # A string
+        print counter
+        print miles
+        print name
+
+  - Multiple Assignment
+    - Python allows you to assign a single value to several variables simultaneously.
+    - Example:
+      a = b = c = 1
+      a,b,c = 1,2,"john"
+
+  - Vaiable Best Practices:
+    - snake_case
+    - Start with lower case and undescore
+    - Letters, Numbers, Underscores
+    - Case sensitive
+    - Don't overwrite Keywords
+    - No special chaacters
+
+Python Expressions:
+  - Expression is a piece of code that produces a value
+  - Example:
+    x = 25
+    y = x / 5
+    print(x)
+    - Here x / 5 is an expression
+  - An expression is any sequence of literals (strings, numbers, lists, sets, tuples),
+    objects, function calls, identifiers combined with a variety of operators which results in a value
+
+Python Statements:
+  - The statement is an entire line of a code that performs some action
+  - Example:
+    x = 25
+    y = x / 5
+    print(x)
+    - Here, "y = x / 5" is a statement which performs the division
+
+Data Types:
+
+  - Since everything is an object in Python programming, data types are actually classes and variables are instance (object) of these classes.
+  - Python data types are divided in two categories
+    1. Immutable
+        - Numbers
+        - Strings
+        - Tuple
+
+    2. Mutable
+      - Lists
+      - Dictonaries
+      - Sets
+
+  - Numeric datatype in Python:
+
+    - Integer
+      - In Python 3, there is no upper bound on the integer number which means we can have the value as large as our system memory allows
+      - Example:
+        print(type(15))
+        Out: <class 'int'>
+
+    - Long
+      - Long data type is deprecated in Python 3 because there is no need for it, since the integer has no upper limit,
+      - There is no point in having a data type that allows larger upper limit than integers.
+
+    - Float
+      - Values with decimal points are the float values, there is no need to specify the data type in Python.
+      - Example:
+        print(type(4.5))
+        Out: <class 'float'>
+
+    - Complex Number
+      - Numbers with real and imaginary parts are known as complex numbers.
+      - Python is able to identify these complex numbers with the values.
+      - Example:
+        print(type(4j))
+        Out: <class 'complex'>
+
+  - Python Mathematical Functions
+    - The "math" module is a standard module in Python and is always available.
+    - To use mathematical functions under this module, you have to import the module using "import math".
+    - Example"
+      # Square root calculation
+      import math
+      math.sqrt(4)
+      Out: 2.0
+
+  - Python Operators Precedence
+    - The following lists all operators from highest precedence to lowest.
+      () --> Bracket
+      ** --> Exponentiation (raise to the power)
+      * / --> Multiply and Divide Operators
+      + - --> Addition and Subtraction
+    - Example:
+      print((5 + 4) * 10 / 2)
+      Out: 45.0
+      print(((5 + 4) * 10) / 2)
+      Out: 45.0
+      print((5 + 4) * (10 / 2))
+      Out: 45.0
+      print(5 + (4 * 10) / 2)
+      Out: 25.0
+      print(5 + 4 * 10 // 2)
+      Out: 25
+
+  - Augmented assignment operator
+    - The operator (+, -, *) which comes on the left side of assignment operator is known as "Augmented assignment operator"
+    - Example:
+      x, y = 5, 10
+      y += 12
+      print(y)
+      Out: 22
+      - Here, "+=" is the augmented assignment operator
+
+Python Strings
+==============
+
+  - Strings in Python are identified as a contiguous set of characters represented in the quotation marks.
+  - Python allows for either pairs of single or double quotes
+  - Subsets of strings can be taken using the slice operator ([ ] and [:] )
+    with indexes starting at 0 in the beginning of the string and working their way from -1 at the end.
+  - The plus (+) sign is the string concatenation operator and the asterisk (*) is the repetition operator
+  - Example:
+    str = 'Hello World!'
+    print str          # Prints complete string
+    print str[0]       # Prints first character of the string
+    print str[2:5]     # Prints characters starting from 3rd to 5th
+    print str[2:]      # Prints string starting from 3rd character
+    print str * 2      # Prints string two times
+    print str + "TEST" # Prints concatenated string
+
+    Output:
+    Hello World!
+    H
+    llo
+    llo World!
+    Hello World!Hello World!
+    Hello World!TEST
+
+  - Doc Strings:
+    - Python documentation strings (or docstrings) provide a convenient way of associating documentation with Python modules, functions, classes, and methods.
+    - It’s specified in source code that is used, like a comment, to document a specific segment of code.
+    - The docstrings are declared using “””triple double quotes””” just below the class, method or function declaration.
+    - The docstrings can be accessed using the __doc__ method of the object or using the help function.
+    - Example:
+      def power(a, b):
+        """Returns arg1 raised to power arg2."""
+
+        return a**b
+
+      print power.__doc__
+      output:
+      Returns arg1 raised to power arg2.
+
+  - String Concatenation:
+    - String concatenation is only work with stings
+    - If you would like to combile two strings, the concatenation operator "+" should be used between the strings
+    - Example:
+      str1, str2 = "Hello", "Naveen"
+      str3 = str1 + " " + str2
+      print(str3)
+      print(type(str3))
+      out:
+        Hello Naveen
+        <class 'str'>
+
+  - Type Conversion
+    - It is possible to convert one data type into another fom in Python
+    - Example:
+      a = str(10)
+      b = type(a)
+      print(b)
+      print(list(a))
+      output:
+      <class 'str'>
+      ['1', '0']
+
+  - Escape Sequence
+    - To insert characters that are illegal in a string, use an escape character.
+    - An escape character is a backslash "\" followed by the character you want to insert.
+    - An example of an illegal character is a double quote inside a string that is surrounded by double quotes:
+    - Example:
+      You will get an error if you use double quotes inside a string that is surrounded by double quotes:
+      txt = "We are the so-called "Vikings" from the north."
+      out: SyntaxError: invalid syntax
+      - To fix this problem, use the escape character \":
+        - The escape character allows you to use double quotes when you normally would not be allowed:
+        txt = "We are the so-called \"Vikings\" from the north."
+        print(txt)
+        out: We are the so-called "Vikings" from the north.
+    - Other escape characters used in Python:
+
+      Code	Result             Example
+      ----  -------            --------
+      \'	  Single Quote       txt = 'It\'s alright.' >> It's alright.
+      \\    Backslash          txt = "This will insert one \\ (backslash)." >> This will insert one \ (backslash).
+      \n    New Line           txt = "Hello\nWorld!" >> Hello
+                                                        World!
+      \r  	Carriage Return    txt = "Hello\rWorld!" >> Hello
+                                                        World!
+      \t	  Tab                txt = "Hello\tWorld!" >> Hello   World!
+      \b	  Backspace          txt = "Hello \bWorld!" >> HelloWorld! #This example erases one character (backspace)
+      \f	  Form Feed          txt = "Hello world \f hehe" >> Hello world
+                                                                          hehe
+      \ooo	Octal value        txt = "\110\145\154\154\157" >> Hello # A backslash followed by three integers will result in a octal value
+      \xhh	Hex value          txt = "\x48\x65\x6c\x6c\x6f" >> Hello # A backslash followed by an 'x' and a hex number represents a hex value
+
+  - Formatted String (f-sting)
+    - Python f-string is the newest Python syntax to do string formatting.
+    - It is available since Python 3.6
+    - Python f-strings provide a faster, more readable, more concise, and less error prone way of formatting strings in Python
+    - The f-strings have the f prefix and use {} brackets to evaluate values
+    - Example:
+
+        #!/usr/bin/env python3
+        name = 'Peter'
+        age = 23
+        print('%s is %d years old' % (name, age))   # This is the oldest option.
+        print('{} is {} years old'.format(name, age)) # Since Python 3.0, the format() function was introduced to provide advance formatting options.
+        print(f'{name} is {age} years old') # Python f-strings are available since Python 3.6
+
+        output:
+        Peter is 23 years old
+        Peter is 23 years old
+        Peter is 23 years old
+
+  - String Indexes
+    - Strings are ordered sequences of character data.
+    - Indexing allows you to access individual characters in a string directly by using a numeric value
+    - String indexing is zero-based: the first character in the string has index 0, the next is 1, and so on
+    - Indices are provided inside the brackets, that is with the syntax : sequence[index]
+    - Indexes is in the form of  "[start:stop:stepover]"
+    - Examples:
+      str1 = "Hello Naveen, Welcome!"
+      print(str1[1])
+      out: e
+      print(str[0:5])
+      out: Hello
+      print(str1[0:12:2])
+      out: HloNve
+    - The index -1 corresponds to the last item, -2 to the second last, and so on
+    - Example:
+      print(str1[-1])
+      out: !
+      print(str1[::-1])
+      out: !emocleW ,neevaN olleH
+
+  - String Methods
+    - Python has a set of built-in methods that you can use on strings.
+    - All string methods returns new values. They do not change the original string
+    - Few examples are mentioned below:
+      new = "hello naveen"
+      print(new.upper())
+      out: HELLO NAVEEN
+      print(new.capitalize())
+      out: Hello naveen
+      print(new.replace('e', 'a'))
+      out: hallo navaan
+      print(new)
+      out: hellow naveen # The value remains the same (immutable) until it gets assigned to a new or existing string
+
+Python Booleans
+  - Booleans represent the idea of "True" and "False"
+  - When you compare two values, the expression is evaluated and Python returns the Boolean answer
+  - Example:
+    print(10 > 9)
+    print(10 == 9)
+    print(10 < 9)
+    output:
+    True
+    False
+    False
+  - In python, the value "1" represents "True" and "0" repesents "False"
+  - Example:
+    print(bool(1))
+    out: True
+    print(bool(0))
+    out: False
+
+  Exercise for Strings:
+
+    # Type Conversion
+    birth_year = input("What year were you born: ")
+    age = 2020 - int(birth_year)
+    print(f"Your age is {age}")
+
+    output:
+    What year were you born: 1989
+    Your age is 31
+
+    # Password Checker
+    user_name = input("Enter user name: ")
+    password = input("Enter password: ")
+    password_lenght = lent(password)
+    secrete_password = * * password_lenght
+    print(f"Hey {user_name}, your password {} is {secrete_password}")
+
+    output:
+    Enter user name: Naveen
+    Enter password: secrete
+    Hey Naveen, your password ******* is 7
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------
+
+LISTS
+=====
+
+  - A list is a collection which is ordered and changeable
+  - In Python lists are written with square brackets.
+  - You access the list items by referring to the index number
+  - You can specify a range of indexes by specifying where to start and where to end the range
+  - When specifying a range, the return value will be a new list with the specified items
+  - Example:
+    # List Slicing
+    list1 = ["apple", "banana", "cherry", "orange", "kiwi", "melon", "mango"]
+    print(list1)
+    out: ["apple", "banana", "cherry", "orange", "kiwi", "melon", "mango"]
+
+    print(list1[2:5])
+    out : ['cherry', 'orange', 'kiwi']
+
+    print(list1[-4:-1])
+    out: ['orange', 'kiwi', 'melon']'
+
+    list1[0] = "grapes"
+    print(list1)
+    out : ["grapes", "banana", "cherry", "orange", "kiwi", "melon", "mango"] # Index "0" value has been updated
+
+    new_list = list1 # list1 memory also will gets updated with new_list changes
+    new_list[0] = ["lemon"]
+    print(new_list)
+    print(list1)
+    out:
+      ["lemon", "banana", "cherry", "orange", "kiwi", "melon", "mango"]
+      ["lemon", "banana", "cherry", "orange", "kiwi", "melon", "mango"]
+
+      new_list = list1[:] # Allocate a new memory for new_list and list1 will be unchanged
+      new_list[0] = ["lemon"]
+      print(new_list)
+      print(list1)
+      out:
+        ["lemon", "banana", "cherry", "orange", "kiwi", "melon", "mango"]
+        ["grapes", "banana", "cherry", "orange", "kiwi", "melon", "mango"]
+
+  - A single list may contain DataTypes like Integers, Strings, as well as Objects.
+  - Lists are mutable, and hence, they can be altered even after their creation
+  - Lists are a useful tool for preserving a sequence of data and further iterating over it
+
+  Multi-dimensional lists in Python
+  ---------------------------------
+    - There can be more than one additional dimension to lists in Python
+    - Multi-dimensional lists are the lists within lists
+    - Usually, a dictionary will be the better choice rather than a multi-dimensional list in Python
+    - Example:
+      a = [[2, 4, 6, 8, 10], [3, 6, 9, 12, 15], [4, 8, 12, 16, 20]]
+      print(a)
+      out: [[2, 4, 6, 8, 10], [3, 6, 9, 12, 15], [4, 8, 12, 16, 20]]
+    - The elements in the Multi-dimensional lists can be accessed using the indexes
+    - Example:
+      a = [[2, 4, 6, 8, 10], [3, 6, 9, 12, 15], [4, 8, 12, 16, 20]]
+      print[a[0][3]]
+      out: 8
+      a = [[2, ["a", "e"], 4, 6, 8, 10], [3, 6, 9, 12, 15], [4, 8, 12, 16, 20]]
+      print(a[0][1][1])
+      out: e
+
+      a = [[2, ["a", "e", ["hello",["world", ["Naveen"]]]], 4, 6, 8, 10], [3, 6, 9, 12, 15], [4, 8, 12, 16, 20]]
+      print(a[0][1][2][1][1])
+      out: ["Naveen"]
+
+  List Methods
+    - Python has a set of built-in methods that you can use on lists
+    - Let's look into all the methods with below examples
+    - Example:
+
+      a = [1, 2, 3, 4]
+      b = ["a", "e", "i", "o", "u"]
+
+    - append()
+      - The append() method appends an object(element) to the end of the list
+      - Syntax:
+          list.append(element)
+          - The "element" is required
+      - Example:
+        c = a.append(5)
+        print(c)
+        out: None # because it's an action i.e., The element "5" will be added to the list "a" in the memory and returns nothing
+        print(a)
+        out: [1, 2, 3, 4, 5]
+        c = a
+        print(c)
+        out: [1, 2, 3, 4, 5]
+
+    - insert()
+      - The insert() method inserts the specified value at the specified position
+      - Syntax:
+          list.insert(position, element)
+          - The parameters "position" and "element" are mandatory
+      - Example:
+        d = a.insert(2, "hello")
+        print(d)
+        print(a)
+        out:
+        None
+        [1, 2, "hello", 3, 4, 5]
+
+    - extend()
+      - The extend() method adds the specified list elements (or any iterable) to the end of the current list
+      - Note: It will add the list of elements but not lists to the end
+      - iterables = list, set, tuple, etc.
+      - Syntax:
+          list.extend(iterable)
+          - The parameter "iteable" is required
+      - Example:
+        a.extend(b)
+        print(a)
+        out:
+        [1, 2, 3, 4, 5, 'a', 'e', 'i', 'o', 'u']
+
+    - pop()
+      - The pop() method removes the element at the specified position
+      - Syntax:
+        list.pop(position)
+        - Here, Position is optional. The default value is -1, which means pop() deletes the last element in the list by default
+        - The pop() returns the removed value
+      - Example:
+        c = a.pop()
+        d = b.pop[1]
+        print(a)
+        print(b)
+        print(c)
+        print(d)
+        out:
+        [1, 2, 3]
+        4
+        ["a", i", "o", "u"]
+        e
+    - remove()
+      - The remove() method removes the first occurrence of the element with the specified value
+      - Syntax:
+          list.remove(element)
+          - element is mandatory. Any type(string, number, list etc.) The element you want to remove
+          - remove() would returns None
+      - Example:
+        c = a.remove(3)
+        print(a)
+        print(c)
+        out:
+        [1, 2, 4]
+        None
+
+    - clear()
+      - The clear() method removes all the elements from a list
+      - Syntax:
+          list.clear()
+          - No parameters and clear() returns None
+      - Example:
+        c = b.clear()
+        print(b)
+        print(c)
+        out:
+        []
+        None
+
+    - index()
+      - The index() method searches an element in the list and returns its index.
+      - If the same element is present more than once, the method returns the index of the first occurrence of the element
+      - Syntax:
+          list.index(value, start, end)
+          - The parameter "element" is required.
+          - The optional arguments start and end are interpreted as in the slice notation and are used to limit the search to a particular subsequence of the list.
+      - Example:
+        l1 = ["a", "e", "i", "o", "u"]
+        l2 = ["hello", [1, 2, 3], ("a", "b"). "Naveen"]
+        x = l1.index("o", 0, 4)
+        print(l2.index(("a", "b")))
+        print(l2.index([1, 2, 3]))
+        print(x)
+        Out:
+        2
+        1
+        3
+
+        y = l1.index("u", 0, 2)
+        print(y)
+        out: # Error due to the element is not within the given index
+        Traceback (most recent call last):
+        File "main.py", line 10, in <module>
+          x = l1.index("o", 0, 2)
+        ValueError: 'o' is not in list
+
+    - 
