@@ -7,7 +7,7 @@ SALTSTACK
     - Opensource SaltStack is free
     - SaltStack uses the ZeroMQ messaging library to process high-speed requirements for all networking layers.
 
-================================================================================================================================================================================================================================================
+============================================================================
 Installation & configuration
 ============================================================================
 
@@ -87,7 +87,7 @@ Delete a Minion from the list:
     - Use the below command to delete a minion
 
         $ salt-key --delete=<minion-id>
-=====================================================================================================================================================================================================================================================
+================================================================================================================================================
 
 What is SaltStack?
 
@@ -208,7 +208,7 @@ Salt-States:
         - When applying the state, the .sls suffix is not mentioned.
         - All of the state declarations in the state file are applied.
 
-=======================================================================================================================================================================================================================================================
+=======================================================================================================================================================
 
 SaltStack - Architecture:
 
@@ -352,7 +352,8 @@ SaltStack - Architecture:
 
         - Runners:
 
-            - It is a module present inside the Salt Master and responsible for performing tasks like reading data from the external APs, connection status, job status, query connected Salt Minions and many more.
+            - It is a module present inside the Salt Master and responsible for performing tasks like reading data from the external APIs,
+              connection status, job status, query connected Salt Minions and many more.
             - Salt runners are convenience applications executed with the salt-run command.
             - Salt runners work similarly to Salt execution modules however they execute on the Salt master itself instead of remote Salt minions.
             - A Salt runner can be a simple client call or a complex application.
@@ -417,15 +418,15 @@ SaltStack - Architecture:
 
             - This component is used to Run the Salt commands on Secure shell on the systems without any interference of Salt Minion.
 
-=======================================================================================================================================================================================================================================================
-
+=======================================================================================================================================
 Benefits of SaltStack:
 
     - There are a number of benefits of using the SaltStack, and they are mentioned below:
 
         - Robust:
 
-            - SaltStack is a simple, powerful, robust configuration management framework which can work efficiently with thousands of systems simultaneously without hassle.
+            - SaltStack is a simple, powerful, robust configuration management framework which can work
+              efficiently with thousands of systems simultaneously without hassle.
 
         - Authentication:
 
@@ -509,9 +510,10 @@ Templates:
                 {% endif %}
                 - source: salt://motd
 
-        - In this example, the first if block will only be evaluated on minions that aren't running FreeBSD, and the second block changes the file name based on the os grain.
+        - In this example, the first if block will only be evaluated on minions that aren't running FreeBSD,
+          and the second block changes the file name based on the os grain.
 
-==================================================================================================================================================================================================================================================
+==============================================================================================================================================
 
 Examples:
 
