@@ -242,7 +242,8 @@ SaltStack - Architecture:
             - Formulas are usually organized across several different .sls files.
             - Formulas are pre-written Salt States.
             - Salt Formulas are simple yaml text files and by default reside on your Salt Master in /srv/salt/
-            - As a simple example, to install the popular Apache web server (using the normal defaults for the underlying distro) simply include the apache-formula from a top file:
+            - As a simple example, to install the popular Apache web server (using the normal defaults for the underlying distro)
+              simply include the apache-formula from a top file:
 
                 base:
                   'web*':
@@ -296,7 +297,8 @@ SaltStack - Architecture:
 
         - Pillar:
 
-            - A pillar is an interface designed for generating or storing the highly sensitive information specific to particular slave daemons, such as passwords and cryptographic keys.
+            - A pillar is an interface designed for generating or storing the highly sensitive information specific to particular slave daemons,
+              such as passwords and cryptographic keys.
             - Salt’s pillar feature takes data defined on the Salt master and distributes it to minions.
             - Pillar is also a useful place to store non-secret data that you wouldn’t want to record directly in your state files.
             - It stores the information in a key/value pair and the management of data is done just like salt state tree.
@@ -315,12 +317,14 @@ SaltStack - Architecture:
 
             - As with state files, a top file (separate from your states’ top file) maps pillar data to minions
             - Salt Pillar is sometimes confused with Salt Grains, as they both keep data that is used in states and remote execution.
-            - The data that grains maintains originates from the minions, while the data in pillar originates on the master (or another backend) and is delivered to the minions.
+            - The data that grains maintains originates from the minions, while the data in pillar originates on the master (or another backend)
+              and is delivered to the minions.
 
         - The Top File:
 
             - It is used for matching the Salt States and Pillar Data to Slave Daemons.
-            - In addition to manually applying states to minions, Salt provides a way for you to automatically map which states should be applied to different minions.
+            - In addition to manually applying states to minions, Salt provides a way for you to automatically map which states
+              should be applied to different minions.
             - This map is called the top file.
 
             - Example: /srv/salt/top.sls
@@ -338,9 +342,11 @@ SaltStack - Architecture:
                 - base is the default.
 
                 - Groups of minions are specified under the environment, and states are listed for each set of minions.
-                - The above example top file says that a universal_setup state should be applied to all minions ('*'), and the webserver_setup state should be applied to the webserver1 minion.
+                - The above example top file says that a universal_setup state should be applied to all minions ('*'),
+                  and the webserver_setup state should be applied to the webserver1 minion.
 
-            - If you run the state.apply function with no arguments, then Salt will inspect the top file and apply all states within it according to the mapping you’ve created:
+            - If you run the state.apply function with no arguments, then Salt will inspect the top file and apply all states
+              within it according to the mapping you’ve created:
 
                 $ salt '*' state.apply
 
